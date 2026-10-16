@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 98%;
+    --foreground: 224 30% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 9%;
+    --muted: 220 16% 94%;
+    --muted-foreground: 220 10% 38%;
+    --border: 220 14% 88%;
+    --input: 220 14% 84%;
+    --ring: 226 100% 59%;
+    --primary: 226 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --destructive: 0 72% 46%;
+    --success: 152 60% 30%;
+    --warning: 32 90% 38%;
+    --radius: 0.75rem;
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 225 24% 6%;
+    --foreground: 220 20% 95%;
+    --card: 225 20% 9%;
+    --card-foreground: 220 20% 95%;
+    --muted: 225 16% 14%;
+    --muted-foreground: 220 10% 64%;
+    --border: 225 14% 18%;
+    --input: 225 14% 24%;
+    --ring: 226 100% 71%;
+    --primary: 226 100% 72%;
+    --primary-foreground: 225 30% 8%;
+    --destructive: 0 80% 66%;
+    --success: 152 55% 55%;
+    --warning: 38 92% 60%;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .btn {
+    @apply focus-ring inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+  .btn-outline {
+    @apply btn border border-input bg-card text-foreground hover:bg-muted;
+  }
+  .btn-ghost {
+    @apply btn text-muted-foreground hover:bg-muted hover:text-foreground;
+  }
+  .btn-danger {
+    @apply btn text-destructive hover:bg-destructive/10;
+  }
+
+  .input {
+    @apply focus-ring min-h-11 w-full rounded-lg border border-input bg-card px-3.5 text-sm text-foreground placeholder:text-muted-foreground;
+  }
+  textarea.input {
+    @apply py-2.5 leading-6;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-foreground;
+  }
+  .hint {
+    @apply mt-1.5 text-xs text-muted-foreground;
+  }
+
+  .surface {
+    @apply rounded-2xl border bg-card text-card-foreground;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.7) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.7) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, #000 30%, transparent 75%);
+  }
+
+  /* Mixed-font headline: bold sans + italic serif accent */
+  .display {
+    @apply font-sans font-bold tracking-tight;
+  }
+
+  .display-accent {
+    @apply font-serif font-medium italic;
+    font-size: 1.08em;
+    letter-spacing: -0.01em;
+    color: hsl(var(--foreground) / 0.7);
+  }
+}
