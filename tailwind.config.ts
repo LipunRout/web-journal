@@ -20,6 +20,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
         },
+        brand: 'hsl(var(--brand))',
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
@@ -27,6 +28,10 @@ const config: Config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
+        },
+        footer: {
+          DEFAULT: 'hsl(var(--footer))',
+          foreground: 'hsl(var(--footer-foreground))',
         },
         destructive: 'hsl(var(--destructive))',
         success: 'hsl(var(--success))',

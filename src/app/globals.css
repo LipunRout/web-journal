@@ -4,39 +4,45 @@
 
 @layer base {
   :root {
-    --background: 220 20% 98%;
-    --foreground: 224 30% 9%;
+    --background: 260 40% 98%;
+    --foreground: 255 40% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 224 30% 9%;
-    --muted: 220 16% 94%;
-    --muted-foreground: 220 10% 38%;
-    --border: 220 14% 88%;
-    --input: 220 14% 84%;
-    --ring: 226 100% 59%;
-    --primary: 226 100% 55%;
+    --card-foreground: 255 40% 10%;
+    --muted: 260 30% 95%;
+    --muted-foreground: 255 12% 40%;
+    --border: 260 25% 89%;
+    --input: 260 25% 84%;
+    --ring: 266 85% 55%;
+    --primary: 266 85% 52%;
     --primary-foreground: 0 0% 100%;
+    --brand: 330 85% 52%;
     --destructive: 0 72% 46%;
     --success: 152 60% 30%;
     --warning: 32 90% 38%;
+    --footer: 255 45% 8%;
+    --footer-foreground: 260 30% 96%;
     --radius: 0.75rem;
     color-scheme: light;
   }
 
   .dark {
-    --background: 225 24% 6%;
-    --foreground: 220 20% 95%;
-    --card: 225 20% 9%;
-    --card-foreground: 220 20% 95%;
-    --muted: 225 16% 14%;
-    --muted-foreground: 220 10% 64%;
-    --border: 225 14% 18%;
-    --input: 225 14% 24%;
-    --ring: 226 100% 71%;
-    --primary: 226 100% 72%;
-    --primary-foreground: 225 30% 8%;
+    --background: 255 35% 6%;
+    --foreground: 260 30% 96%;
+    --card: 255 30% 9%;
+    --card-foreground: 260 30% 96%;
+    --muted: 255 22% 14%;
+    --muted-foreground: 255 12% 66%;
+    --border: 255 20% 18%;
+    --input: 255 20% 24%;
+    --ring: 266 95% 72%;
+    --primary: 266 95% 72%;
+    --primary-foreground: 255 40% 8%;
+    --brand: 330 90% 68%;
     --destructive: 0 80% 66%;
     --success: 152 55% 55%;
     --warning: 38 92% 60%;
+    --footer: 255 45% 3%;
+    --footer-foreground: 260 30% 96%;
     color-scheme: dark;
   }
 
@@ -82,7 +88,11 @@
     @apply focus-ring inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply btn text-primary-foreground;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--brand)));
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
   }
   .btn-outline {
     @apply btn border border-input bg-card text-foreground hover:bg-muted;
@@ -116,13 +126,17 @@
     @apply inline-flex items-center rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground;
   }
 
-  .bg-grid {
+  .bg-aurora {
     background-image:
-      linear-gradient(to right, hsl(var(--border) / 0.7) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border) / 0.7) 1px, transparent 1px);
-    background-size: 44px 44px;
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, #000 30%, transparent 75%);
-    mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, #000 30%, transparent 75%);
+      radial-gradient(40rem 24rem at 15% 10%, hsl(var(--primary) / 0.22), transparent 60%),
+      radial-gradient(36rem 22rem at 90% 30%, hsl(var(--brand) / 0.18), transparent 60%);
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--brand)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   /* Mixed-font headline: bold sans + italic serif accent */
