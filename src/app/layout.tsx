@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   title: { default: 'Web Journal', template: '%s | Web Journal' },
   description: 'Write and publish articles about web development. Sign in with Google and go live in minutes.',
   openGraph: { type: 'website', siteName: 'Web Journal' },
+  icons: { icon: '/brand/web-journal-mark.png' },
 };
 
 export const viewport: Viewport = {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { BlogCard, CARD_COLUMNS } from '@/components/blog/BlogCard';
+import { CARD_COLUMNS } from '@/components/blog/BlogCard';
+import { LatestPostsGallery } from '@/components/blog/LatestPostsGallery';
 import { CategoryTabs } from '@/components/blog/CategoryTabs';
 import { HomeHero } from '@/components/layout/HomeHero';
 import { EmailSignup } from '@/components/ui/EmailSignup';
@@ -36,11 +37,7 @@ export default async function HomePage({ searchParams }: { searchParams: { categ
 
         {posts && posts.length > 0 ? (
           <>
-            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
+            <LatestPostsGallery key={selected?.slug ?? 'all'} posts={posts} />
             <div className="mt-10">
               <Link href={selected ? `/categories/${selected.slug}` : '/blog'} className="btn-outline">
                 {selected ? `See all ${selected.name} posts` : 'See all posts'}
