@@ -120,18 +120,17 @@ export function CardHandGallery({
     ? handCards.findIndex((card) => card.id === hoveredId)
     : -1;
 
-  // Clamp the horizontal spread so the outermost cards (including their hover
-  // scale) never clip against the column edges.
+  // Clamp the horizontal spread so rotated, hovered cards stay inside the fan
+  // column instead of overlapping the title and description columns.
   const maxOffset = (handCards.length - 1) / 2;
-  // 0.45 covers half a hand-sized card plus the extra width a 9° tilt adds.
+  // The 0.49 allowance covers the hand scale, hover scale, and card rotation.
   const halfAvailable =
-    fanWidth === null ? Number.POSITIVE_INFINITY : fanWidth / 2 - width * 0.45;
+    fanWidth === null
+      ? Number.POSITIVE_INFINITY
+      : Math.max(0, fanWidth / 2 - width * 0.49);
   const fanSpacing =
     maxOffset > 0
-      ? Math.min(
-          width * (handCards.length > 5 ? 0.43 : 0.52),
-          Math.max(width * 0.23, halfAvailable / maxOffset),
-        )
+      ? Math.min(width * (handCards.length > 5 ? 0.43 : 0.52), halfAvailable / maxOffset)
       : 0;
 
   const cardTransition = shouldReduceMotion
@@ -167,7 +166,7 @@ export function CardHandGallery({
   return (
     <div
       className={cn(
-        "flex w-full flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-6 lg:gap-10",
+        "relative isolate flex w-full flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-6 lg:gap-10",
         className,
       )}
     >
